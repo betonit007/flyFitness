@@ -1,8 +1,9 @@
 const express = require('express')
-const products = require('./data/products')
 const dotenv = require("dotenv")
 const colors = require("colors")
 const connectDB = require("./config/db")
+const productRoutes = require('./routes/productRoutes')
+const { errorHandler, notFound } = require("./middleware/errorMiddleware")
 
 dotenv.config()
 
@@ -10,14 +11,16 @@ connectDB()
 
 const app = express()
 
-app.get('/api/products', (req, res) => {
-    res.json(products)
+app.get('/', (req, res) => {
+    res.send('API is running...')
 })
 
-app.get('/api/products/:id', (req, res) => {
-    const product = products.find(p => p._id === req.params.id)
-    res.json(product)
-})
+app.use('/api/products', productRoutes)
+
+//Sends back custom error message including requested route that was not found
+app.use(notFound)
+//Custom middleware for error handling
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
