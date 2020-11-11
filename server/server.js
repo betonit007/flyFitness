@@ -3,6 +3,7 @@ const dotenv = require("dotenv")
 const colors = require("colors")
 const connectDB = require("./config/db")
 const productRoutes = require('./routes/productRoutes')
+const userRoutes = require('./routes/userRoutes')
 const { errorHandler, notFound } = require("./middleware/errorMiddleware")
 
 dotenv.config()
@@ -10,12 +11,10 @@ dotenv.config()
 connectDB()
 
 const app = express()
-
-app.get('/', (req, res) => {
-    res.send('API is running...')
-})
+app.use(express.json())
 
 app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
 
 //Sends back custom error message including requested route that was not found
 app.use(notFound)
