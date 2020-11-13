@@ -29,7 +29,7 @@ const CartScreen = ({ match, location, history }) => {
             dispatch(addToCart(productId, qty))
         }
     }, [dispatch, productId, qty])
-    console.log(cartItems)
+    
     return (
         <Row>
             <Col md={8}>
