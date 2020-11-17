@@ -11,7 +11,7 @@ const PlaceOrderScreen = ({ history }) => {
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
 
-    const placeOrderHandler = e => {
+    const placeOrderHandler = () => {
     
         dispatch(createOrder({
             orderItems: cart.cartItems,
@@ -55,7 +55,7 @@ const PlaceOrderScreen = ({ history }) => {
                         <ListGroup.Item>
                             <h2>Shipping</h2>
                             <p>
-                                <strong>Address</strong>
+                                <strong>Address: </strong>
                                 {cart.shippingAddress.address},
                             {cart.shippingAddress.city},
                             {cart.shippingAddress.postalCode},
