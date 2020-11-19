@@ -1,4 +1,4 @@
-import { PRODUCT_LIST_FAIL, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_FAIL } from '../constants/productConstants'
+import { PRODUCT_LIST_FAIL, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_FAIL, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_FAIL, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_RESET, PRODUCT_CREATE_SUCCESS } from '../constants/productConstants'
 import axios from 'axios'
 
 export const listProducts = () => async (dispatch) => { //function within a function via Redux thunk
@@ -27,7 +27,6 @@ export const listProductDetails = id => async (dispatch) => {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
         const { data } = await axios.get(`/api/products/${id}`)
-
         dispatch({ 
             type: PRODUCT_DETAILS_SUCCESS,
             payload: data
@@ -40,5 +39,72 @@ export const listProductDetails = id => async (dispatch) => {
             ? error.response.data.message
             : error.message
       })
+    }
+}
+
+export const deleteProduct = id => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: PRODUCT_DELETE_REQUEST
+        })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        await axios.delete(`/api/products/${id}`, config)
+
+        dispatch({
+            type: PRODUCT_DELETE_SUCCESS,
+        })
+
+
+    } catch (error) {
+        console.log(error)
+        dispatch({
+            type: PRODUCT_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        })
+    }
+}
+
+export const createProduct = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: PRODUCT_CREATE_REQUEST
+        })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const { data} = await axios.post(`/api/products/`, {}, config) //sending empty object since we're making a post request but not sending any data.
+
+        dispatch({
+            type: PRODUCT_CREATE_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        console.log(error)
+        dispatch({
+            type: PRODUCT_CREATE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message
+        })
     }
 }
