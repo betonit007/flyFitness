@@ -1,4 +1,4 @@
-import { ORDER_CREATE_REQUEST, ORDER_CREATE_FAIL, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_PAY_RESET, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_MY_RESET } from '../constants/orderConstants'
+import { ORDER_CREATE_REQUEST, ORDER_CREATE_FAIL, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_PAY_RESET, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_MY_RESET, ORDER_LISTALL_REQUEST, ORDER_LISTALL_FAIL, ORDER_LISTALL_SUCCESS, ORDER_LISTALL_RESET, ORDER_DELIVER_FAIL, ORDER_DELIVER_REQUEST, ORDER_DELIVER_SUCCESS, ORDER_DELIVER_RESET } from '../constants/orderConstants'
 
 export const orderCreateReducer = (state = {}, action) => {
     switch (action.type) {
@@ -96,6 +96,54 @@ export const orderListMyReducer = (state = { orders: [] }, action) => {
             return {
                 orders: []
             }
+
+        default:
+            return state;
+    }
+}
+
+export const allOrdersListReducer = (state = { allOrders: [] }, action) => {
+    switch (action.type) {
+        case ORDER_LISTALL_REQUEST:
+            return {
+                loading: true
+            }
+        case ORDER_LISTALL_SUCCESS:
+            return {
+                loading: false,
+               allOrders: action.payload
+            }
+        case ORDER_LISTALL_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case ORDER_LISTALL_RESET:
+            return {}
+
+        default:
+            return state;
+    }
+}
+
+export const orderDeliverReducer = (state = { allOrders: [] }, action) => {
+    switch (action.type) {
+        case ORDER_DELIVER_REQUEST:
+            return {
+                loading: true
+            }
+        case ORDER_DELIVER_SUCCESS:
+            return {
+                loading: false,
+               allOrders: action.payload
+            }
+        case ORDER_DELIVER_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case ORDER_DELIVER_RESET:
+            return {}
 
         default:
             return state;
