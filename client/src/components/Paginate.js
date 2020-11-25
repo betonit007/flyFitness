@@ -3,7 +3,7 @@ import { Pagination } from 'react-bootstrap'
 import { Link, LinkContainer } from 'react-router-bootstrap'
 
 const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
-    console.log(pages)
+    
     return pages > 1 && (
         <Pagination>
             {[...Array(pages).keys()].map(x => (
