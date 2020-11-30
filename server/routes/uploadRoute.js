@@ -32,7 +32,7 @@ const upload = multer({ //passing in as middleware to our route
 })
 
 router.post('/', upload.single('image'), (req, res) => { // set multer to just accept a single image
-    res.send(`${req.file.path}`)
+    res.send(`/${req.file.path}`)
 })
 
 module.exports = router

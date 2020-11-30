@@ -1,9 +1,8 @@
-# MernChat Messenger
+# Fly-Fitness
 
-![Project Image](https://res.cloudinary.com/dbb1t68vt/image/upload/v1604416443/1604416443456.jpg)
+![Project Image](https://res.cloudinary.com/dbb1t68vt/image/upload/v1606335518/flyfit_ps4rg7.png)
 
-> MernChat Messenger - The chat application that takes whatsapp to the next level.
-
+> Fly Fitness - Ecommerce Website, http://flyfitness.herokuapp.com/
 ---
 
 ### Table of Contents
@@ -16,15 +15,15 @@
 
 ## Description
 
-WhatsApp Messenger is a browswer-based instant messaging application that allows users to exchange text and image messages for free. 
+Fly Fitnes is a MERN stack, ecommerce website that utilizes Redux along with its new hooks: useSelector and useDispatch.
 
 #### Technologies
 
 - MERN Stack - Mongo, Express, React and Node.js
-- Pusher - a hosted service that adds real-time data functionality to web and mobile applications
-- Cloudinary - a cloud service for managing and storing images
+- Redux - is an open-source JavaScript library for managing application state. 
+- Paypal API
 
-[Back To The Top](#Mernchat-Messenger)
+[Back To The Top](#Fly-Fitness)
 
 ---
 
@@ -38,8 +37,7 @@ WhatsApp Messenger is a browswer-based instant messaging application that allows
 
 ## Prerequirements
 - [MongoDB](https://mongodb.com)
-- [Cloudinary](https://cloudinary.com)
-- [Pusher](https://pusher.com/)
+- [PayPal](https://developer.paypal.com/home)
 
 ### Prepare your credentials, run the following scripts in the root directory:
 
@@ -54,14 +52,9 @@ Secondly, you will need a MongoUri
 $ echo "MONGO_URI=YOUR_MONGO_URI" >> ./.env
 ```
 
-Next, the following crendentials for Pusher
+Then, enter the crendentials for Paypal
 ```terminal
-$ echo -e "PUSHER_ID=YOUR_PUSHER_ID\nPUSHER_KEY=YOUR_PUSHER_KEY\nPUSHER_SECRET=YOUR_PUSHER_SECRET" >> ./.env
-```
-
-Then, enter the crendentials for Cloudinary
-```terminal
-$ echo -e "CLOUDINARY_CLOUD_NAME=YOUR_CLOUDINARY_CLOUD_NAME\nCLOUDINARY_API_KEY=YOUR_CLOUDINARY_API_KEY\nCLOUDINARY_SECRET=YOUR_CLOUDINARY_SECRET" >> ./.env
+$ echo -e "PAYPAL_CLIENT_ID=YOUR_PAYPAL_CLIENT_ID" >> ./.env
 ```
 
 Set your environment for developement purposes
@@ -69,9 +62,9 @@ Set your environment for developement purposes
 $ echo "NODE_ENV=development" >> ./.env
 ```
 
-And finally, set your pusher id on the front end
+And finally, set your PORT
 ```terminal
-$ echo "REACT_APP_PUSHER=YOUR_REACT_APP_PUSHER" >> ./client/.env
+$ echo "PORT=5000" >> ./.env
 ```
 
 ## Start
@@ -80,13 +73,13 @@ $ npm run dev
 ```
 
 
-[Back To The Top](#Mernchat-Messenger)
+[Back To The Top](#Fly-Fitness)
 
 ---
 ## References
 [Github Repo](https://github.com/betonit007/mernChat)
 
-[Back To The Top](#Mernchat-Messenger)
+[Back To The Top](#Fly-Fitness)
 
 ---
 
@@ -114,7 +107,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[Back To The Top](#Mernchat-Messenger)
+[Back To The Top](#Fly-Fitness)
 
 ---
 
@@ -124,4 +117,4 @@ SOFTWARE.
 - LinkedIn - [Tim Nagorski](https://www.linkedin.com/in/tim-nagorski-7a188091/)
 - Website - [The Fly Dev](https://theflydev.com)
 
-[Back To The Top](#Mernchat-Messenger)
+[Back To The Top](#Fly-Fitness)
